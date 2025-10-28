@@ -21,8 +21,12 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
-            Building{' '}
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-400 mb-3 sm:mb-4 font-medium">
+            Hey, I&apos;m <span className="text-white font-bold">Utsav</span>
+          </p>
+          
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight">
+            <span className="block sm:inline">I Build</span>{' '}
             <TypeAnimation
               sequence={[
                 'Scalable Systems',
@@ -36,7 +40,7 @@ export default function Hero() {
               ]}
               wrapper="span"
               speed={50}
-              className="text-primary"
+              className="text-primary inline-block"
               repeat={Infinity}
             />
           </h1>
