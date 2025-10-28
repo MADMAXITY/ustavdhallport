@@ -14,12 +14,12 @@ export default function Footer() {
 
   return (
     <footer className="relative border-t border-dark-border bg-dark-lighter">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
           {/* Brand */}
           <div>
             <div className="mb-4">
-              <Logo className="text-4xl text-primary" />
+              <Logo className="h-12 sm:h-14 md:h-16 w-auto" />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
               Backend Engineer crafting scalable microservices and cloud-native solutions.
@@ -69,11 +69,11 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-dark-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-400 text-sm">
+        <div className="border-t border-dark-border pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">
+          <p className="text-gray-400 text-xs sm:text-sm text-center md:text-left">
             © {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.
           </p>
-          <p className="text-gray-400 text-sm flex items-center gap-1">
+          <p className="text-gray-400 text-xs sm:text-sm flex items-center gap-1">
             Built with <Heart size={14} className="text-primary animate-pulse" /> using Next.js
           </p>
         </div>

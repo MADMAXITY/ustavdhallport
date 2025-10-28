@@ -29,7 +29,7 @@ export default function Skills() {
   })
 
   return (
-    <section id="skills" className="relative py-24 px-6 lg:px-8 bg-dark-lighter/30">
+    <section id="skills" className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-dark-lighter/30">
       <div className="max-w-7xl mx-auto">
         <motion.div
           ref={ref}
@@ -37,11 +37,11 @@ export default function Skills() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 sm:mb-12 lg:mb-16 text-center">
             Technical <span className="text-primary">Skills</span>
           </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {Object.entries(SKILLS).map(([category, skills], index) => {
               const Icon = categoryIcons[category as keyof typeof categoryIcons]
               return (
@@ -53,8 +53,8 @@ export default function Skills() {
                 >
                   <Card className="h-full">
                     <CardHeader>
-                      <CardTitle className="flex items-center gap-3 text-lg">
-                        <Icon className="text-primary" size={24} />
+                      <CardTitle className="flex items-center gap-2 sm:gap-3 text-base sm:text-lg">
+                        <Icon className="text-primary" size={20} />
                         {category}
                       </CardTitle>
                     </CardHeader>
@@ -63,7 +63,7 @@ export default function Skills() {
                         {skills.map((skill) => (
                           <span
                             key={skill}
-                            className="px-3 py-1.5 text-sm font-medium bg-dark border border-dark-border rounded-lg text-gray-300 hover:border-primary hover:text-white transition-all"
+                            className="px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium bg-dark border border-dark-border rounded-lg text-gray-300 hover:border-primary hover:text-white transition-all"
                           >
                             {skill}
                           </span>

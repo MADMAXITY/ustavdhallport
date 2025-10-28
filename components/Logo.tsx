@@ -1,7 +1,14 @@
-export default function Logo({ className = "text-2xl" }: { className?: string }) {
+import Image from 'next/image'
+
+export default function Logo({ className = "h-8 w-auto" }: { className?: string }) {
   return (
-    <span className={`font-black tracking-tighter ${className}`} style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-      UD
-    </span>
+    <Image
+      src="/logo.png"
+      alt="Utsav Dhall"
+      width={120}
+      height={40}
+      className={className}
+      priority
+    />
   )
 }

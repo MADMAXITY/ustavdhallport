@@ -12,7 +12,7 @@ export default function Projects() {
   })
 
   return (
-    <section id="projects" className="relative py-24 px-6 lg:px-8">
+    <section id="projects" className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <motion.div
           ref={ref}
@@ -20,11 +20,11 @@ export default function Projects() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 sm:mb-12 lg:mb-16 text-center">
             Selected <span className="text-primary">Work</span>
           </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {PROJECTS.map((project, index) => (
               <motion.div
                 key={project.id}
@@ -34,8 +34,8 @@ export default function Projects() {
               >
                 <Card className="h-full flex flex-col hover:scale-[1.02] transition-transform">
                   <CardHeader>
-                    <CardTitle className="text-xl">{project.title}</CardTitle>
-                    <CardDescription className="text-gray-400 leading-relaxed">
+                    <CardTitle className="text-lg sm:text-xl">{project.title}</CardTitle>
+                    <CardDescription className="text-sm sm:text-base text-gray-400 leading-relaxed">
                       {project.description}
                     </CardDescription>
                   </CardHeader>

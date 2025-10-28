@@ -33,18 +33,18 @@ export default function Navigation() {
         isScrolled ? 'bg-dark/95 backdrop-blur-md border-b border-dark-border' : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo */}
           <a
             href="#home"
-            className="text-primary hover:opacity-80 transition-opacity"
+            className="hover:opacity-80 transition-opacity"
             onClick={(e) => {
               e.preventDefault()
               scrollToSection('#home')
             }}
           >
-            <Logo className="text-3xl" />
+            <Logo className="h-10 sm:h-12 md:h-14 w-auto" />
           </a>
 
           {/* Desktop Navigation */}
@@ -76,7 +76,7 @@ export default function Navigation() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors"
+            className="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors touch-manipulation"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}

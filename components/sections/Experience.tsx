@@ -13,7 +13,7 @@ export default function Experience() {
   })
 
   return (
-    <section id="experience" className="relative py-24 px-6 lg:px-8 bg-dark-lighter/30">
+    <section id="experience" className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 bg-dark-lighter/30">
       <div className="max-w-6xl mx-auto">
         <motion.div
           ref={ref}
@@ -21,11 +21,11 @@ export default function Experience() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 sm:mb-12 lg:mb-16 text-center">
             Work <span className="text-primary">Experience</span>
           </h2>
 
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             {EXPERIENCE.map((exp, index) => (
               <motion.div
                 key={exp.id}
@@ -37,15 +37,15 @@ export default function Experience() {
                   <CardHeader className="bg-gradient-to-r from-primary/10 to-transparent">
                     <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                       <div>
-                        <CardTitle className="text-2xl flex items-center gap-2 mb-2">
+                        <CardTitle className="text-xl sm:text-2xl flex items-center gap-2 mb-2">
                           <Briefcase className="text-primary" size={24} />
                           {exp.role}
                         </CardTitle>
-                        <CardDescription className="text-lg text-white font-semibold">
+                        <CardDescription className="text-base sm:text-lg text-white font-semibold">
                           {exp.company}
                         </CardDescription>
                       </div>
-                      <div className="flex flex-col gap-2 text-sm text-gray-400">
+                      <div className="flex flex-col gap-2 text-xs sm:text-sm text-gray-400">
                         <div className="flex items-center gap-2">
                           <Calendar size={16} />
                           {exp.period}

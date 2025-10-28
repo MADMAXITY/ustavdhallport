@@ -14,7 +14,7 @@ export default function Contact() {
   })
 
   return (
-    <section id="contact" className="relative py-24 px-6 lg:px-8">
+    <section id="contact" className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <motion.div
           ref={ref}
@@ -22,17 +22,17 @@ export default function Contact() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <div className="text-center mb-10 sm:mb-12 lg:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
               Let&apos;s <span className="text-primary">Connect</span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto px-4">
               Whether you have a project in mind, want to collaborate, or simply chat about tech... I&apos;d love to connect.
             </p>
           </div>
 
           {/* Contact Info */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8 sm:mb-10 lg:mb-12">
             <Button
               variant="default"
               size="default"
@@ -55,7 +55,7 @@ export default function Contact() {
           <ContactForm />
 
           {/* Additional Info */}
-          <div className="mt-16 grid md:grid-cols-3 gap-6 text-center">
+          <div className="mt-10 sm:mt-12 lg:mt-16 grid sm:grid-cols-3 gap-6 sm:gap-8 text-center">
             <div className="flex flex-col items-center gap-2">
               <Mail className="text-primary" size={24} />
               <p className="text-sm text-gray-400">Email</p>
