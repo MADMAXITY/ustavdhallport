@@ -1,4 +1,5 @@
-import StarBackground from '@/components/StarBackground'
+import DotGridBackground from '@/components/DotGridBackground'
+import CustomCursor from '@/components/CustomCursor'
 import Navigation from '@/components/Navigation'
 import Hero from '@/components/sections/Hero'
 import About from '@/components/sections/About'
@@ -11,7 +12,8 @@ import Footer from '@/components/sections/Footer'
 export default function Home() {
   return (
     <main className="relative min-h-screen overflow-x-hidden">
-      <StarBackground />
+      <DotGridBackground />
+      <CustomCursor />
       <Navigation />
       <div className="relative z-10">
         <Hero />

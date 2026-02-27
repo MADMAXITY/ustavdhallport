@@ -4,24 +4,24 @@
 
 @layer base {
   :root {
-    --background: 0 0% 4%;
-    --foreground: 0 0% 100%;
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 100%;
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 100%;
+    --background: 0 0% 3%;
+    --foreground: 30 12% 96%;
+    --card: 0 0% 7%;
+    --card-foreground: 30 12% 96%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 30 12% 96%;
     --primary: 14 100% 57%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 16%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 16%;
-    --muted-foreground: 0 0% 63%;
-    --accent: 0 0% 16%;
-    --accent-foreground: 0 0% 100%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 30 12% 96%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 0 0% 10%;
+    --accent-foreground: 30 12% 96%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 16%;
-    --input: 0 0% 16%;
+    --border: 0 0% 13%;
+    --input: 0 0% 10%;
     --ring: 14 100% 57%;
     --radius: 0.5rem;
   }
@@ -32,14 +32,15 @@
     @apply border-border;
   }
   body {
-    @apply bg-dark text-foreground font-sans antialiased;
+    @apply bg-dark text-warm font-sans antialiased;
+    background-color: #080808;
+    color: #f5f0eb;
   }
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
   }
-  
-  /* Better touch targets on mobile */
+
   button, a, input, textarea {
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
@@ -50,20 +51,30 @@
   .text-balance {
     text-wrap: balance;
   }
+  .font-mono {
+    font-family: var(--font-mono), ui-monospace, monospace;
+  }
+}
+
+/* Custom cursor — only on pointer devices */
+@media (pointer: fine) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: #080808;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #2a2a2a;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -72,11 +83,38 @@
 
 /* Selection */
 ::selection {
-  background-color: #ff5722;
-  color: white;
+  background-color: rgba(255, 87, 34, 0.3);
+  color: #f5f0eb;
 }
 
 ::-moz-selection {
+  background-color: rgba(255, 87, 34, 0.3);
+  color: #f5f0eb;
+}
+
+/* Terminal cursor blink */
+.terminal-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.1em;
   background-color: #ff5722;
-  color: white;
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+}
+
+/* Dot grid background */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Glow ring on timeline dots */
+.timeline-dot {
+  box-shadow: 0 0 0 4px rgba(255, 87, 34, 0.15), 0 0 16px rgba(255, 87, 34, 0.25);
+}
+
+/* Scramble text */
+.scramble {
+  font-family: var(--font-mono), monospace;
+  letter-spacing: 0.02em;
 }

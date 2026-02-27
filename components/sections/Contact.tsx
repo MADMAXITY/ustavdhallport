@@ -8,10 +8,7 @@ import ContactForm from '@/components/ContactForm'
 import { SITE_CONFIG } from '@/lib/constants'
 
 export default function Contact() {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
 
   return (
     <section id="contact" className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
@@ -22,59 +19,87 @@ export default function Contact() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <div className="text-center mb-10 sm:mb-12 lg:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
+          {/* Section heading */}
+          <div className="relative text-center mb-10 sm:mb-12 lg:mb-16">
+            <span
+              className="absolute -top-6 left-1/2 -translate-x-1/2 font-mono font-black leading-none select-none pointer-events-none"
+              style={{ fontSize: 'clamp(5rem, 14vw, 10rem)', color: 'rgba(255,255,255,0.025)' }}
+              aria-hidden
+            >
+              05
+            </span>
+            <h2 className="relative text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
               Let&apos;s <span className="text-primary">Connect</span>
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto px-4">
-              Whether you have a project in mind, want to collaborate, or simply chat about tech... I&apos;d love to connect.
+            <p className="text-base sm:text-lg text-warm/50 max-w-2xl mx-auto px-4">
+              Whether you have a project in mind, want to collaborate, or simply chat about tech—I&apos;d love to connect.
             </p>
           </div>
 
-          {/* Contact Info */}
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-8 sm:mb-10 lg:mb-12">
+          {/* Quick contact buttons */}
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-10 sm:mb-12">
             <Button
               variant="default"
               size="default"
               onClick={() => window.open(`mailto:${SITE_CONFIG.email}`)}
+              className="font-mono text-xs tracking-widest"
             >
-              <Mail size={18} className="mr-2" />
-              Email
+              <Mail size={16} className="mr-2" />
+              EMAIL ME
             </Button>
             <Button
               variant="default"
               size="default"
               onClick={() => window.open(SITE_CONFIG.linkedin, '_blank')}
+              className="font-mono text-xs tracking-widest"
             >
-              <Linkedin size={18} className="mr-2" />
-              LinkedIn
+              <Linkedin size={16} className="mr-2" />
+              LINKEDIN
             </Button>
           </div>
 
           {/* Contact Form */}
           <ContactForm />
 
-          {/* Additional Info */}
+          {/* Contact info grid */}
           <div className="mt-10 sm:mt-12 lg:mt-16 grid sm:grid-cols-3 gap-6 sm:gap-8 text-center">
-            <div className="flex flex-col items-center gap-2">
-              <Mail className="text-primary" size={24} />
-              <p className="text-sm text-gray-400">Email</p>
-              <a href={`mailto:${SITE_CONFIG.email}`} className="text-white hover:text-primary transition-colors">
-                {SITE_CONFIG.email}
-              </a>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <Phone className="text-primary" size={24} />
-              <p className="text-sm text-gray-400">Phone</p>
-              <a href={`tel:${SITE_CONFIG.phone}`} className="text-white hover:text-primary transition-colors">
-                {SITE_CONFIG.phone}
-              </a>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <MapPin className="text-primary" size={24} />
-              <p className="text-sm text-gray-400">Location</p>
-              <p className="text-white">{SITE_CONFIG.location}</p>
-            </div>
+            {[
+              {
+                icon: Mail,
+                label: 'Email',
+                value: SITE_CONFIG.email,
+                href: `mailto:${SITE_CONFIG.email}`,
+              },
+              {
+                icon: Phone,
+                label: 'Phone',
+                value: SITE_CONFIG.phone,
+                href: `tel:${SITE_CONFIG.phone}`,
+              },
+              {
+                icon: MapPin,
+                label: 'Location',
+                value: SITE_CONFIG.location,
+                href: null,
+              },
+            ].map(({ icon: Icon, label, value, href }) => (
+              <div key={label} className="flex flex-col items-center gap-2 group">
+                <div
+                  className="w-10 h-10 rounded-xl flex items-center justify-center border border-dark-border group-hover:border-primary/30 transition-colors duration-300"
+                  style={{ background: 'rgba(255,87,34,0.06)' }}
+                >
+                  <Icon className="text-primary" size={18} />
+                </div>
+                <p className="text-xs font-mono text-warm/40 tracking-widest uppercase">{label}</p>
+                {href ? (
+                  <a href={href} className="text-sm text-warm/70 hover:text-primary transition-colors">
+                    {value}
+                  </a>
+                ) : (
+                  <p className="text-sm text-warm/70">{value}</p>
+                )}
+              </div>
+            ))}
           </div>
         </motion.div>
       </div>

@@ -16,10 +16,11 @@ const config: Config = {
           light: '#ff7043'
         },
         dark: {
-          DEFAULT: '#0a0a0a',
-          lighter: '#1a1a1a',
-          border: '#2a2a2a'
+          DEFAULT: '#080808',
+          lighter: '#111111',
+          border: '#222222'
         },
+        warm: '#f5f0eb',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -54,12 +55,15 @@ const config: Config = {
         }
       },
       fontFamily: {
-        sans: ['var(--font-geist-sans)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'monospace'],
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out',
         'slide-up': 'slideUp 0.6s ease-out',
         'float': 'float 3s ease-in-out infinite',
+        'blink': 'blink 1s step-end infinite',
+        'glow-pulse': 'glowPulse 3s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -73,6 +77,14 @@ const config: Config = {
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-10px)' },
+        },
+        blink: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0' },
+        },
+        glowPulse: {
+          '0%, 100%': { opacity: '0.4' },
+          '50%': { opacity: '0.8' },
         },
       },
       borderRadius: {

@@ -1,20 +1,72 @@
 "use client"
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { Menu, X } from 'lucide-react'
 import { NAV_ITEMS } from '@/lib/constants'
 import { Button } from './ui/button'
 import Logo from './Logo'
+
+const SCRAMBLE_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#'
+
+function ScrambleLink({
+  name,
+  href,
+  onClick,
+  className,
+}: {
+  name: string
+  href: string
+  onClick: (e: React.MouseEvent<HTMLAnchorElement>) => void
+  className?: string
+}) {
+  const [display, setDisplay] = useState(name)
+  const rafRef = useRef(0)
+
+  const scramble = useCallback(() => {
+    let frame = 0
+    const totalFrames = name.length * 4
+
+    const tick = () => {
+      setDisplay(
+        name
+          .split('')
+          .map((char, i) => {
+            if (char === ' ') return ' '
+            if (frame > i * 3) return char
+            return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)]
+          })
+          .join('')
+      )
+      frame++
+      if (frame < totalFrames) {
+        rafRef.current = requestAnimationFrame(tick) as unknown as number
+      } else {
+        setDisplay(name)
+      }
+    }
+
+    cancelAnimationFrame(rafRef.current)
+    requestAnimationFrame(tick)
+  }, [name, rafRef])
+
+  return (
+    <a
+      href={href}
+      onClick={onClick}
+      onMouseEnter={scramble}
+      className={`font-mono text-xs tracking-widest uppercase ${className}`}
+    >
+      {display}
+    </a>
+  )
+}
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 50)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -29,8 +81,10 @@ export default function Navigation() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-dark/95 backdrop-blur-md border-b border-dark-border' : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled
+          ? 'bg-dark/90 backdrop-blur-md border-b border-dark-border'
+          : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -48,35 +102,32 @@ export default function Navigation() {
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center gap-1">
             {NAV_ITEMS.map((item) => (
-              <a
+              <ScrambleLink
                 key={item.name}
+                name={item.name}
                 href={item.href}
                 onClick={(e) => {
                   e.preventDefault()
                   scrollToSection(item.href)
                 }}
-                className="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors rounded-lg hover:bg-white/5"
-              >
-                {item.name}
-              </a>
+                className="px-4 py-2 text-warm/60 hover:text-warm transition-colors rounded-lg hover:bg-white/5"
+              />
             ))}
             <Button
               variant="primary"
               size="sm"
-              className="ml-4"
-              onClick={() => {
-                window.open('/resume.pdf', '_blank')
-              }}
+              className="ml-4 font-mono text-xs tracking-widest"
+              onClick={() => window.open('/resume.pdf', '_blank')}
             >
-              Resume
+              RESUME
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors touch-manipulation"
+            className="md:hidden text-warm p-2 hover:bg-white/10 rounded-lg transition-colors touch-manipulation"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -86,8 +137,8 @@ export default function Navigation() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-dark-lighter border-t border-dark-border">
-          <div className="px-6 py-4 space-y-2">
+        <div className="md:hidden bg-dark/95 backdrop-blur-md border-t border-dark-border">
+          <div className="px-6 py-4 space-y-1">
             {NAV_ITEMS.map((item) => (
               <a
                 key={item.name}
@@ -96,7 +147,7 @@ export default function Navigation() {
                   e.preventDefault()
                   scrollToSection(item.href)
                 }}
-                className="block px-4 py-3 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all"
+                className="block px-4 py-3 font-mono text-xs tracking-widest uppercase text-warm/60 hover:text-warm hover:bg-white/5 rounded-lg transition-all"
               >
                 {item.name}
               </a>
@@ -104,13 +155,13 @@ export default function Navigation() {
             <Button
               variant="primary"
               size="sm"
-              className="w-full mt-4"
+              className="w-full mt-4 font-mono text-xs tracking-widest"
               onClick={() => {
                 window.open('/resume.pdf', '_blank')
                 setIsMobileMenuOpen(false)
               }}
             >
-              Download Resume
+              RESUME
             </Button>
           </div>
         </div>
