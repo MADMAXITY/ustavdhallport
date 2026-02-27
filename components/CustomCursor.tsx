@@ -33,8 +33,8 @@ export default function CustomCursor() {
     const handleMouseLeave = () => setVisible(false)
 
     const tick = () => {
-      ringX += (mouseX - ringX) * 0.1
-      ringY += (mouseY - ringY) * 0.1
+      ringX += (mouseX - ringX) * 0.22
+      ringY += (mouseY - ringY) * 0.22
       ring.style.transform = `translate(${ringX - 20}px, ${ringY - 20}px)`
       raf = requestAnimationFrame(tick)
     }
@@ -71,27 +71,27 @@ export default function CustomCursor() {
       {/* Dot */}
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 z-[9999] pointer-events-none rounded-full transition-all duration-150"
+        className="fixed top-0 left-0 z-[9999] pointer-events-none rounded-full"
         style={{
           width: isPointer ? '6px' : '8px',
           height: isPointer ? '6px' : '8px',
           backgroundColor: isPointer ? '#ff5722' : '#f5f0eb',
           opacity: visible ? 1 : 0,
           willChange: 'transform',
-          marginTop: isPointer ? '1px' : '0',
-          marginLeft: isPointer ? '1px' : '0',
+          transition: 'opacity 0.15s, width 0.15s, height 0.15s, background-color 0.15s',
         }}
       />
       {/* Ring */}
       <div
         ref={ringRef}
-        className="fixed top-0 left-0 z-[9999] pointer-events-none rounded-full transition-all duration-200"
+        className="fixed top-0 left-0 z-[9999] pointer-events-none rounded-full"
         style={{
           width: isPointer ? '44px' : '40px',
           height: isPointer ? '44px' : '40px',
           border: isPointer ? '1.5px solid rgba(255,87,34,0.8)' : '1px solid rgba(245,240,235,0.35)',
           opacity: visible ? 1 : 0,
           willChange: 'transform',
+          transition: 'opacity 0.15s, width 0.2s, height 0.2s, border 0.2s',
         }}
       />
     </>
